@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <title>Поиск ближайшего целого числа</title>
+    <script>
+        function findClosestInteger() {
+            var closestInteger;
+            var minDifference;
+            var userInput;
+            var index = 0;
+
+            while (true) {
+                userInput = prompt("Введите число (для завершения введите нечисловое значение):");
+
+                if (isNaN(userInput)) {
+                    break; // Выходим из цикла, если введено нечисловое значение
+                }
+
+                var number = parseFloat(userInput);
+                var difference = Math.abs(number - Math.round(number));
+
+                if (index === 0 || difference < minDifference) {
+                    closestInteger = number;
+                    minDifference = difference;
+                }
+
+                index++;
+            }
+
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Наиболее близкое к целому числу: " + closestInteger + "<br>" + "Порядковый номер: " + index;
+        }
+
+        window.onload = function() {
+            findClosestInteger();
+        };
+    </script>
+</head>
+<body>
+<h1>Поиск ближайшего целого числа</h1>
+<div id="result"></div>
+</body>
+</html>
